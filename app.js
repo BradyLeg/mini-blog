@@ -1,6 +1,34 @@
 //import express
 import express from 'express';
 
+import mariadb from 'mariadb';
+
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+
+const pool = mariadb.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_Name,
+    port: process.env.DB_PORT
+})
+
+
+
+async function connect() {
+    try {
+        let conn = await pool.getConnection();
+        console.log("connected to database");
+        return conn;
+    } catch (err) {
+        console.log(`Error connecting to the database: ${err}`);
+    }
+
+}
+
 //Instantiate an Express application 
 const app = express();
 
@@ -15,7 +43,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 //Define a port number for our server to listen on 
-const PORT = 3000;
+const PORT = process.env.APP_PORT || 3000;
 
 //Define a "default" route for our home page 
 app.get('/', (req, res) => {
@@ -24,7 +52,9 @@ app.get('/', (req, res) => {
 });
 
 //create post
-app.post('/submit', (req, res) => {
+app.post('/submit', async (req, res) => 
+    {
+
 
     const newPost = {
         name: req.body.name,
@@ -34,8 +64,21 @@ app.post('/submit', (req, res) => {
 
     console.log(newPost)
 
+    const conn = await connect();
+
+    const insertQuery = await conn.query(`INSERT INTO 
+        mini_blog(author, title, content)
+        VALUES(?,?,?)`,
+        [newPost.author,
+            newPost.title,
+            newPost.content]);
+            
+
     res.render('confirmation', { newPost });
 });
+
+
+
 
 //Send port in Console.
 app.listen(PORT, () => {
