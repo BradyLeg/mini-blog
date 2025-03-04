@@ -26,7 +26,6 @@ async function connect() {
     } catch (err) {
         console.log(`Error connecting to the database: ${err}`);
     }
-
 }
 
 //Instantiate an Express application 
@@ -52,8 +51,7 @@ app.get('/', (req, res) => {
 });
 
 //create post
-app.post('/submit', async (req, res) => 
-    {
+app.post('/submit', async (req, res) => {
 
 
     const newPost = {
@@ -62,22 +60,30 @@ app.post('/submit', async (req, res) =>
         content: req.body.content
     };
 
-    console.log(newPost)
+    console.log(newPost);
 
     const conn = await connect();
 
     const insertQuery = await conn.query(`INSERT INTO 
-        mini_blog(author, title, content)
+        post(author, title, content)
         VALUES(?,?,?)`,
-        [newPost.author,
-            newPost.title,
-            newPost.content]);
-            
+        [newPost.name,
+        newPost.title,
+        newPost.content]);
+
 
     res.render('confirmation', { newPost });
 });
 
+app.get('/entires', async (req, res) => {
 
+    const conn = await connect();
+    const posts = await conn.query(`SELECT * FROM post ORDER BY created_at DESC;`);
+
+    console.log(posts);
+
+    res.render('entries', { posts });
+});
 
 
 //Send port in Console.
