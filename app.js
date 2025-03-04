@@ -55,7 +55,7 @@ app.post('/submit', async (req, res) => {
 
 
     const newPost = {
-        name: req.body.name,
+        author: req.body.name,
         title: req.body.title,
         content: req.body.content
     };
@@ -70,6 +70,7 @@ app.post('/submit', async (req, res) => {
         [newPost.name,
         newPost.title,
         newPost.content]);
+
 
 
     res.render('confirmation', { newPost });
