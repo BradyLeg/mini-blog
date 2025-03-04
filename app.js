@@ -57,7 +57,7 @@ app.post('/submit', async (req, res) =>
 
 
     const newPost = {
-        name: req.body.name,
+        author: req.body.name,
         title: req.body.title,
         content: req.body.content
     };
@@ -67,12 +67,12 @@ app.post('/submit', async (req, res) =>
     const conn = await connect();
 
     const insertQuery = await conn.query(`INSERT INTO 
-        mini_blog(author, title, content)
+        post(author, title, content)
         VALUES(?,?,?)`,
         [newPost.author,
             newPost.title,
             newPost.content]);
-            
+
 
     res.render('confirmation', { newPost });
 });
