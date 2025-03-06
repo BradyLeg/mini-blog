@@ -5,6 +5,8 @@ body
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
+    font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
 form 
@@ -12,12 +14,19 @@ form
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border: 2px, solid, black;
+    padding: 5%;
+    width: 30%;
 }
 
 input,
-button 
+button,textarea 
 {
-    margin: 2%;
+    margin: 1%;
 }
 
+button {
+    color: white;
+    background-color: darkgreen;
+}
 
