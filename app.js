@@ -67,7 +67,7 @@ app.post('/submit', async (req, res) => {
     const insertQuery = await conn.query(`INSERT INTO 
         post(author, title, content)
         VALUES(?,?,?)`,
-        [newPost.name,
+        [newPost.author,
         newPost.title,
         newPost.content]);
 
