@@ -1,8 +1,8 @@
-body
-{
+body {
     background-color: rgb(255, 115, 0);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    font-family: 'Segoe UI', Roboto, sans-serif;
 }
