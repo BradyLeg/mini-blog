@@ -3,15 +3,26 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
+    font-family: 'Segoe UI', Roboto, sans-serif;
 }
 
 form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border: 2px, solid, black;
+    padding: 5%;
+    width: 30%;
 }
 
 input,
+button,
+textarea {
+    margin: 1%;
+}
+
 button {
-    margin: 2%;
+    color: white;
+    background-color: darkgreen;
 }
