@@ -42,7 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 //Define a port number for our server to listen on 
-const PORT = process.env.APP_PORT || 3000;
+const PORT = process.env.APP_PORT || 7000;
 
 //Define a "default" route for our home page 
 app.get('/', (req, res) => {

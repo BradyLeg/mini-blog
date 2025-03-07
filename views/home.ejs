@@ -5,14 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <script src= "script/validation.js" defer></script> 
 </head>
 <body>
-    <form action="/submit" method="post">
+    <form action="/submit" method="post" id="post-form">
         <h1>Create a New Post</h1>
-        <input type="text" name="name">
-        <input type="text" name="title">
-        <textarea name="content"></textarea>
-        <button type="Submit">Submit</button>
+        <input type="text" id= "name" name="name">
+            <span class="err" id="err-name">Name is required</span>
+
+        <input type="text" id= "title" name="title">
+            <span class="err" id="err-title">Title is required</span>
+
+        <textarea name="content" id="content"></textarea>
+            <span class="err" id="err-content">Content is required or less than 10 characters</span>
+        <button type="submit">Submit</button>
+            
     </form>
 </body>
 </html>
